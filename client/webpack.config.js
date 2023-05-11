@@ -1,11 +1,10 @@
+// Import necessary modules
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
-
+// Export the configuration object
 module.exports = () => {
   return {
     mode: 'development',
@@ -18,17 +17,17 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      // Webpack plugin that generates our html file and injects our bundles
+      // Generate the HTML file and include the bundles
       new HtmlWebpackPlugin({
         template: './index.html',
         title: 'JATE'
       }),
-      // Injects our custom servie worker
+      // Include the custom service worker
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
-      // Creates a manifest.json file.
+      // Generate the manifest.json file
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -51,7 +50,7 @@ module.exports = () => {
     ],
 
     module: {
-      // CSS Loaders
+      // Define the CSS and JavaScript loaders
       rules: [
         {
           test: /\.css$/i,
@@ -60,7 +59,7 @@ module.exports = () => {
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
-          // We use babel-loader in order to use ES6.
+          // Use the babel-loader for ES6 support
           use: {
             loader: 'babel-loader',
             options: {
@@ -73,4 +72,3 @@ module.exports = () => {
     },
   };
 };
-
