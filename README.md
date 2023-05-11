@@ -6,11 +6,7 @@ This is a simple web-based text editor application. It allows users to create, e
 
 ## Features
 
-- Create new text files
 - Edit existing text files
-- Delete text files
-- Download text files
-- Responsive design
 
 ## Installation
 
